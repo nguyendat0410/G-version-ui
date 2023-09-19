@@ -17,6 +17,6 @@ export const colors = {
 export const textColor = {
   primary: '#fff',
   secondary: '#fff',
-  ghost: '233F80',
+  ghost: '#233F80',
   disabled: '#9DA4AE',
 };

@@ -16,7 +16,7 @@ import type { IButton } from "./types";
 const ButtonComponent = (props: IButton) => {
   const {
     label,
-    onClick,
+    onClick = () => {},
     bgColor = "primary",
     width = 160,
     height = 40,
@@ -27,16 +27,24 @@ const ButtonComponent = (props: IButton) => {
       onClick={onClick}
       style={{
         borderRadius: 6,
-        backgroundColor: disable ? colors.disabled : colors[bgColor],
+        backgroundColor: disable ? colors.disabled : colors[bgColor] ?? bgColor,
         width,
         height,
-        borderColor: bgColor === "ghost" ? colors.primary : 'none',
+        borderColor: bgColor === "ghost" ? colors.primary : "none",
         cursor: disable ? "not-allowed" : "pointer",
+        border:
+          bgColor === "ghost"
+            ? `1px solid ${disable ? "#D2D6DB" : textColor.ghost}`
+            : "none",
       }}
     >
       <span
         style={{
-          color: disable ? textColor.disabled : textColor[bgColor],
+          color: disable
+            ? textColor.disabled
+            : bgColor === "ghost"
+            ? textColor.ghost
+            : textColor[bgColor],
           fontSize: 14,
         }}
       >
