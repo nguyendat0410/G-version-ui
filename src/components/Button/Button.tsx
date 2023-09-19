@@ -46,4 +46,6 @@ const ButtonComponent = (props: IButton) => {
   );
 };
 
-export const Button = memo(ButtonComponent, isEqual);
+const Button = memo(ButtonComponent, isEqual);
+
+export default Button;

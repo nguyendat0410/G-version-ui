@@ -7,5 +7,4 @@
  * Change Log: <press Ctrl + alt + c write changelog>
  */
 
-import { Button } from './Button';
-export default Button;
+export { default } from './Button';
