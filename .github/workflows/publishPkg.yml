@@ -16,7 +16,7 @@ on:
           - prerelease
           - decline
 jobs:
-  build:
+  build_package_to_github_packages:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -29,8 +29,16 @@ jobs:
         with:
           node-version: '16.19.0'
           registry-url: 'https://npm.pkg.github.com'
-      - name: Github run ci
-        run: npm ci
+      - name: Install latest Yarn
+        run: corepack prepare yarn@stable --activate
+      - name: Activate latest Yarn
+        run: yarn set version stable
+      - name: Install Node.js dependencies
+        run: yarn install
+      - name: Yarn plugin import version
+        run: yarn plugin import version
+      - name: Build
+        run: yarn build
       - name: Publish to Github Package
         run: npm publish
         env:
