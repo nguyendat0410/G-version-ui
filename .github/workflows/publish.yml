@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       release:
-        description: 'major | minor | patch'
+        description: 'major | minor | patch | prerelease | decline'
         required: true
         default: 'patch'
         type: choice
@@ -11,6 +11,8 @@ on:
           - major
           - minor
           - patch
+          - prerelease
+          - decline
 jobs:
   publish-new-version:
     runs-on: ubuntu-latest
@@ -35,6 +37,10 @@ jobs:
       - name: Publish New Version
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          npmAuthToken: ${{secrets.NPM_TOKEN}}
+          npmPublishAccess: public
+          npmPublishRegistry: https://registry.npmjs.org
+          npmRegistryServer: https://registry.npmjs.org
         run: |
           git config --local user.email "nguyendat0410@gmail.com"
           git config --local user.name "nguyendat0410"
