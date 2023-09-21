@@ -22,6 +22,10 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
+  "repository": {
+    "url": "https://github.com/nguyendat0410/G-version-ui.git",
+    "type": "git"
+  },
   "homepage": "https://getfly.vn",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",

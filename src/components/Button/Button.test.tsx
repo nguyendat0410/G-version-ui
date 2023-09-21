@@ -14,6 +14,6 @@ import Button from "./Button";
 
 describe("Button", () => {
   test("renders the Button component primary", () => {
-    render(<Button label="Primary" bgColor="primary" />);
+    render(<Button label="Primary" variant="primary" />);
   });
 });

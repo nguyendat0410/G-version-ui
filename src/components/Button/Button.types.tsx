@@ -9,7 +9,7 @@
 
 import { MouseEvent} from 'react';
 
-import { ButtonSize, ButtonVariant } from '@themes';
+import { ButtonSize, ButtonVariant } from '../../themes';
 
 export type IButton = {
   label: string;

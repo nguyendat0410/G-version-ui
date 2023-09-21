@@ -16,11 +16,8 @@ on:
           - prerelease
           - decline
 jobs:
-  build_package_to_github_packages:
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
     steps:
       - name: Checkout main repo
         uses: actions/checkout@v4
@@ -39,6 +36,8 @@ jobs:
         run: yarn plugin import version
       - name: Build
         run: yarn build
+      - name: Run Test
+        name: yarn test
       - name: Publish to Github Package
         run: npm publish
         env:
