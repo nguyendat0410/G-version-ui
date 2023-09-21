@@ -19,9 +19,6 @@
     "url": "https://github.com/nguyendat0410"
   },
   "license": "ISC",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org"
-  },
   "repository": {
     "url": "https://github.com/nguyendat0410/G-version-ui.git",
     "type": "git"
