@@ -19,6 +19,9 @@
     "url": "https://github.com/nguyendat0410"
   },
   "license": "ISC",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "repository": {
     "url": "https://github.com/nguyendat0410/G-version-ui.git",
     "type": "git"
