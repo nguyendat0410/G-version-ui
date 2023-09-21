@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Build
-        run: yarn build
+        run: yarn rollup
       # - name: Publish New Version
       #   env:
       #     NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
