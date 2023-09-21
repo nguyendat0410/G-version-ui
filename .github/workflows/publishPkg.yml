@@ -38,7 +38,11 @@ jobs:
         run: yarn build
       - name: Run Test
         run: yarn test
+      - run: |
+          echo @nguyendat0410:https://npm.pkg.github.com/ > build/.npmrc
+          echo '//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}' >> build/.npmrc
       - name: Publish to Github Package
         run: npm publish
+        working-directory: ./dist
         env:
           NODE_AUTH_TOKEN: ${{ secrets.BOT_TOKEN }}
