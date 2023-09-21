@@ -1,0 +1,27 @@
+name: Build
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v2
+      - name: Use Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.19.0'
+          registry-url: https://registry.npmjs.org/
+      - name: Install latest Yarn
+        run: corepack prepare yarn@stable --activate
+      - name: Activate latest Yarn
+        run: yarn set version stable
+      - name: Install Node.js dependencies
+        run: yarn install
+      - name: Yarn plugin import version
+        run: yarn plugin import version
+      - name: Build
+        run: yarn build
