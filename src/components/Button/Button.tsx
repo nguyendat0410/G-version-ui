@@ -5,55 +5,65 @@
  * @copyright     Copyright (c) 2023, GETFLY VN TECH.,JSC
  * -----
  * Change Log: <press Ctrl + alt + c write changelog>
+ * Tue, 9 19th 2023 16:13:34 	Nguyễn Đạt	fix border width
  */
 
 import React, { memo } from "react";
 import isEqual from "react-fast-compare";
 
-import { colors, textColor } from "../../themes";
-import type { IButton } from "./types";
+import { ButtonVariant, ButtonSize } from "@themes";
+import type { IButton } from "./Button.types";
+import "./Button.scss";
 
-const ButtonComponent = (props: IButton) => {
+const Button = (props: IButton) => {
   const {
     label,
     onClick = () => {},
-    bgColor = "primary",
-    width = 160,
-    height = 40,
+    variant = "primary",
+    size = "medium",
     disable = false,
   } = props;
+
+  const buildClassName = () => {
+    let className = "btn";
+
+    switch (size) {
+      case ButtonSize.large:
+        className = `${className} btn-large`;
+        break;
+      case ButtonSize.medium:
+        className = `${className} btn-medium`;
+        break;
+      case ButtonSize.small:
+        className = `${className} btn-small`;
+        break;
+    }
+
+    switch (variant) {
+      case ButtonVariant.primary:
+        className = `${className} btn-primary`;
+        break;
+      case ButtonVariant.ghost:
+        className = `${className} btn-ghost`;
+        break;
+      case ButtonVariant.secondary:
+        className = `${className} btn-secondary`;
+        break;
+    }
+
+    className = `${className}${props.disable ? "__disable" : ""}`;
+
+    return className;
+  };
   return (
     <button
-      onClick={onClick}
-      style={{
-        borderRadius: 6,
-        backgroundColor: disable ? colors.disabled : colors[bgColor] ?? bgColor,
-        width,
-        height,
-        borderColor: bgColor === "ghost" ? colors.primary : "none",
-        cursor: disable ? "not-allowed" : "pointer",
-        border:
-          bgColor === "ghost"
-            ? `1px solid ${disable ? "#D2D6DB" : textColor.ghost}`
-            : "none",
-      }}
+      onClick={disable ? undefined : onClick}
+      className={buildClassName()}
+      disabled={disable}
     >
-      <span
-        style={{
-          color: disable
-            ? textColor.disabled
-            : bgColor === "ghost"
-            ? textColor.ghost
-            : textColor[bgColor],
-          fontSize: 14,
-        }}
-      >
-        {label}
-      </span>
+      {label}
     </button>
   );
 };
 
-const Button = memo(ButtonComponent, isEqual);
-
-export default Button;
+export default memo(Button, isEqual);

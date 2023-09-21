@@ -7,13 +7,15 @@
  * Change Log: <press Ctrl + alt + c write changelog>
  */
 
-
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
 // import postcss from "autoprefixer";
-import dts from "rollup-plugin-dts";
+import { dts } from "rollup-plugin-dts";
+
+import alias from "@rollup/plugin-alias";
+import path from "path";
 
 import terser from "@rollup/plugin-terser";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
@@ -28,6 +30,7 @@ export default [
         file: packageJson.main,
         format: "cjs",
         sourcemap: true,
+        name: "getfly-ui",
       },
       {
         file: packageJson.module,
@@ -36,11 +39,19 @@ export default [
       },
     ],
     plugins: [
+      alias({
+        entries: [
+          {
+            find: "@themes",
+            replacement: path.resolve(process.cwd(), "./src/themes"),
+          },
+        ],
+      }),
       peerDepsExternal(),
       resolve(),
       commonjs(),
       typescript({ tsconfig: "./tsconfig.json" }),
-      postcss(),
+      postcss({ minimize: false, inject: false }),
       terser(),
     ],
     external: ["react", "react-dom"],
@@ -48,7 +59,9 @@ export default [
   {
     input: "src/index.ts",
     output: [{ file: "dist/index.d.ts", format: "es" }],
-    plugins: [dts.default()],
+    plugins: [
+      dts({ tsconfig: "./tsconfig.json" }),
+    ],
     external: [/\.(css|less|scss)$/],
   },
 ];

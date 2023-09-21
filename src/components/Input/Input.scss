@@ -1,0 +1,88 @@
+/**
+ * @description   ¯\(ツ)/¯
+ * @since         Wednesday, 9 20th 2023, 10:59:46 am
+ * @author        Nguyễn Đạt <nguyendinhdat@getflycrm.com>
+ * @copyright     Copyright (c) 2023, GETFLY VN TECH.,JSC
+ * -----
+ * Change Log: <press Ctrl + alt + c write changelog>
+ */
+
+$radius: 4px;
+$height: 36px;
+
+$borderColor: #E5E7EB;
+$placeholderColor: #9DA4AE;
+
+$white: #fff;
+$neutral800: #1F2A37;
+$focus: #233F80;
+$error: #FE450B;
+$disable: #F3F4F6;
+
+.input {
+  &-relative {
+    position: relative;
+
+
+    [class="icon-absolute"] {
+      position: absolute;
+      top: 0.75rem;
+      padding-left: 0.75rem;
+      cursor: pointer;
+
+      & img {
+        padding-right: 0.5rem;
+      }
+
+      input {
+        padding-left: 2.5rem;
+      }
+    }
+
+    [class="with-icon"] {
+      padding-left: 2.5rem;
+    }
+  }
+
+  & label[class="with-label"] {
+    display: block;
+    margin-bottom: 0.5rem;
+
+    & span {
+      color: #e02424;
+    }
+  }
+
+  & input {
+    height: $height;
+    border-radius: $radius;
+    border-width: 0px;
+    border: 1px solid $borderColor;
+    padding: 0px 10px 0px 10px;
+    background-color: $white;
+    color: $neutral800;
+    display: block;
+
+    &::placeholder {
+      color: $placeholderColor;
+    }
+
+    &:focus {
+      border: 1px solid $focus;
+      outline: none;
+    }
+  }
+}
+
+.input {
+  &-error {
+    border: 1px solid $error !important;
+  }
+}
+
+.input {
+  &-disable {
+    background-color: $disable !important;
+    cursor: not-allowed;
+  }
+}

@@ -8,6 +8,10 @@
  */
 
 import type { StorybookConfig } from "@storybook/react-webpack5";
+import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
+import path from 'path';
+
+console.log(__dirname, path.resolve(__dirname, '../tsconfig.json'));
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
@@ -24,6 +28,27 @@ const config: StorybookConfig = {
   },
   docs: {
     autodocs: "tag",
+    defaultName: 'Document-[name]',
+  },
+  staticDirs: ['../public'],
+  core: {
+    builder: '@storybook/builder-webpack5'
+  },
+  webpackFinal: async config => {
+    return {
+      ...config,
+      resolve: {
+        ...config.resolve,
+        plugins: [
+          ...(config.resolve?.plugins || []),
+          new TsconfigPathsPlugin({ configFile: path.resolve(__dirname, '../tsconfig.json') }),
+        ],
+        alias: {
+          ...(config.resolve?.alias || {}),
+          "@themes": path.resolve(__dirname, '../src/themes/index'),
+        },
+      },
+    };
   },
 };
 export default config;

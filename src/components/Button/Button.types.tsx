@@ -9,13 +9,13 @@
 
 import { MouseEvent} from 'react';
 
-import { colors} from '../../themes';
+import { ButtonSize, ButtonVariant } from '@themes';
 
 export type IButton = {
   label: string;
+  variant: keyof typeof ButtonVariant;
   onClick?: (e: MouseEvent<HTMLElement>) => void;
-  bgColor?: keyof typeof colors;
-  width?: number;
-  height?: number;
+  size?: keyof typeof ButtonSize;
+
   disable?: boolean;
 };

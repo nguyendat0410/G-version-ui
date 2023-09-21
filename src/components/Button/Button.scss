@@ -1,0 +1,98 @@
+/**
+ * @description   ¯\(ツ)/¯
+ * @since         Tuesday, 9 19th 2023, 16:25:50 pm
+ * @author        Nguyễn Đạt <nguyendinhdat@getflycrm.com>
+ * @copyright     Copyright (c) 2023, GETFLY VN TECH.,JSC
+ * -----
+ * Change Log: <press Ctrl + alt + c write changelog>
+ */
+
+:root {
+  --primary-color: #233f80;
+}
+
+button {
+  font-size: 14px;
+}
+
+$primary: #233f80;
+$primaryHover: #1d356c;
+$primaryDisable: #e5e7eb;
+
+$ghost: #fff;
+$ghostHover: #2c5099;
+
+$secondary: #f79009;
+$secondaryHover: #792e0d;
+
+$white: #fff;
+$colorPrimaryDisable: #9da4ae;
+
+$height: 40px;
+$radius: 6px;
+.btn {
+  width: 90px;
+  height: $height;
+  border-radius: $radius;
+  border-width: 0;
+  cursor: pointer;
+  color: $white;
+
+  &-large {
+    width: 140px;
+  }
+  &-medium {
+    width: 120px;
+  }
+  &-small {
+    width: 90px;
+  }
+
+  &-primary {
+    background-color: var(--primary-color);
+
+    &:hover {
+      background-color: $primaryHover;
+    }
+
+    &__disable {
+      background-color: $primaryDisable;
+      cursor: not-allowed;
+      color: $colorPrimaryDisable !important;
+    }
+  }
+
+  &-ghost {
+    background-color: $ghost;
+    border: 1px solid var(--primary-color);
+    color: $primary;
+
+    &:hover {
+      background-color: $ghostHover;
+      color: $white !important;
+      border: none;
+    }
+
+    &__disable {
+      background-color: #fafafa;
+      border: 1px solid #d2d6db;
+      cursor: not-allowed;
+      color: #d2d6db;
+    }
+  }
+
+  &-secondary {
+    background-color: $secondary;
+    color: $white;
+
+    &:hover {
+      background-color: $secondaryHover;
+    }
+
+    &__disable {
+      background-color: $primaryDisable;
+      cursor: not-allowed;
+      color: #9da4ae !important;
+    }
+  }
+}

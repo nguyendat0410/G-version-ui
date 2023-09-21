@@ -9,8 +9,13 @@
 
 export const colors = {
   primary: '#233F80',
+  primaryHover: '#1D356C',
   secondary: '#F79009',
+  secondaryHover: '#792E0D',
   ghost: '#fff',
+  ghostHover: '#2C5099',
+  ghostDisable: '#D2D6DB',
+  ghostBorder: '#233F80',
   disabled: '#E5E7EB',
 };
 
@@ -18,5 +23,7 @@ export const textColor = {
   primary: '#fff',
   secondary: '#fff',
   ghost: '#233F80',
+  ghostHover: '#fff',
+  ghostDisable: '#D2D6DB',
   disabled: '#9DA4AE',
 };

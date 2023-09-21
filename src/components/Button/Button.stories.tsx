@@ -11,23 +11,63 @@ import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 
 import Button from "./Button";
+import { ButtonVariant, ButtonSize } from "../../themes";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Button> = {
   title: "Getfly/Button",
   component: Button,
+  tags: ["autodocs"],
   argTypes: {
     onClick: { action: true },
+    size: {
+      control: "select",
+      options: [ButtonSize.large, ButtonSize.medium, ButtonSize.small],
+      description: "Tuỳ chọn kích thước",
+    },
+    variant: {
+      control: "radio",
+      options: [
+        ButtonVariant.primary,
+        ButtonVariant.ghost,
+        ButtonVariant.secondary,
+      ],
+      description: "Chọn kích thước button",
+    },
   },
 };
 export default meta;
 
 type Story = StoryObj<typeof Button>;
 
+export const Basic: Story = (args: any) => <Button {...args} />;
+Basic.args = { label: "Default text", variant: "primary", size: "large", disable: false };
+
+export const AllPrimary = () => (
+  <>
+    <div style={{ display: "flex", gap: 16, padding: 32 }}>
+      <Button label="primary xs" size="small" variant="primary" />
+      <Button label="primary s" size="medium" variant="primary" />
+      <Button label="primary m" size="large" variant="primary" />
+    </div>
+    <div style={{ display: "flex", gap: 16, padding: 32 }}>
+      <Button label="ghost xs" size="small" variant="ghost" />
+      <Button label="ghost s" size="medium" variant="ghost" />
+      <Button label="ghost m" size="large" variant="ghost" />
+    </div>
+    <div style={{ display: "flex", gap: 16, padding: 32 }}>
+      <Button label="secondary xs" size="small" variant="secondary" />
+      <Button label="secondary s" size="medium" variant="secondary" />
+      <Button label="secondary m" size="large" variant="secondary" />
+    </div>
+  </>
+);
+
 export const Primary: Story = {
   args: {
     label: "Primary",
-    bgColor: "primary",
+    variant: "primary",
+    size: "medium",
   },
 };
 
@@ -35,7 +75,8 @@ export const PrimaryDisable: Story = {
   name: "Primary disable ",
   args: {
     label: "Primary disable",
-    bgColor: "primary",
+    variant: "primary",
+    size: "large",
     disable: true,
   },
 };
@@ -43,7 +84,8 @@ export const PrimaryDisable: Story = {
 export const Ghost: Story = {
   args: {
     label: "Ghost",
-    bgColor: "ghost",
+    variant: 'ghost',
+    size: "small",
   },
 };
 
@@ -51,7 +93,8 @@ export const GhostDisable: Story = {
   name: "Ghost disable ",
   args: {
     label: "Ghost disable",
-    bgColor: "ghost",
+    variant: 'ghost',
+    size: "large",
     disable: true,
   },
 };
@@ -59,7 +102,8 @@ export const GhostDisable: Story = {
 export const Secondary: Story = {
   args: {
     label: "Secondary",
-    bgColor: "secondary",
+    variant: 'secondary',
+    size: "medium",
   },
 };
 
@@ -67,7 +111,8 @@ export const SecondaryDisable: Story = {
   name: "Secondary disable ",
   args: {
     label: "Secondary disable",
-    bgColor: "secondary",
+    variant: 'secondary',
+    size: "large",
     disable: true,
   },
 };

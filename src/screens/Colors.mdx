@@ -1,0 +1,48 @@
+import { Meta, ColorPalette, ColorItem } from "@storybook/blocks";
+import { colors, textColor } from "../themes/index";
+
+<Meta title="Colors" />
+
+# Colors Helper
+
+<ColorPalette>
+  ## Primary
+  *Description colors*
+
+  <ColorItem title="colors.primary" subtitle="blue" colors={{
+    text: textColor.primary,
+    background: colors.primary,
+  }} />
+  <ColorItem title="colors.primaryHover" subtitle="blue" colors={{
+    text: textColor.primary,
+    background: colors.primaryHover,
+  }} />
+  <ColorItem title="colors.primaryDisable" subtitle="grey" colors={{
+    text: textColor.disabled,
+    background: colors.disabled,
+  }} />
+  ## Secondary
+  <ColorItem title="colors.secondary" subtitle="orange" colors={{
+    text: textColor.secondary,
+    background: colors.secondary,
+  }} />
+  <ColorItem title="colors.secondary" subtitle="orange" colors={{
+    text: textColor.secondary,
+    background: colors.secondaryHover,
+  }} />
+  ## Ghost
+  <ColorItem title="colors.ghost" subtitle="white" colors={{
+    text: textColor.ghost,
+    background: colors.ghost,
+    border: colors.ghostBorder,
+  }} />
+  <ColorItem title="colors.ghostHover" subtitle="white" colors={{
+    text: textColor.ghostHover,
+    background: colors.ghostHover,
+  }} />
+  <ColorItem title="colors.ghostDisable" subtitle="whiteGrey" colors={{
+    text: textColor.ghostDisable,
+    background: colors.ghost,
+    border: colors.ghostDisable,
+  }} />
+</ColorPalette>
