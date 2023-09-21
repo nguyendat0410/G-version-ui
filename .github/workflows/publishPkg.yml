@@ -37,7 +37,7 @@ jobs:
       - name: Build
         run: yarn build
       - name: Run Test
-        name: yarn test
+        run: yarn test
       - name: Publish to Github Package
         run: npm publish
         env:
