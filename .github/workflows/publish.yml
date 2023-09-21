@@ -28,6 +28,8 @@ jobs:
         run: yarn set version stable
       - name: Install Node.js dependencies
         run: yarn install
+      - name: Yarn plugin import version
+        run: yarn plugin import version
       - name: Build
         run: yarn build
       - name: Publish New Version
