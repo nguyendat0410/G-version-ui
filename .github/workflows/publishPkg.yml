@@ -2,6 +2,19 @@ name: Publish package to GitHub Packages
 on:
   release:
     types: [published]
+  workflow_dispatch:
+    inputs:
+      release:
+        description: 'major | minor | patch | prerelease | decline'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - major
+          - minor
+          - patch
+          - prerelease
+          - decline
 jobs:
   build:
     runs-on: ubuntu-latest
