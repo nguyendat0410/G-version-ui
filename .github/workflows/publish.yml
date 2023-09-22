@@ -19,10 +19,6 @@ on:
           - patch
           - prerelease
           - decline
-      tags:
-        description: 'Test scenario tags'
-        required: true
-        type: string
 jobs:
   publish-new-version:
     runs-on: ubuntu-latest
@@ -45,7 +41,7 @@ jobs:
       - name: Build
         run: yarn build
       - name: Send message to Telegram
-        uses: ./
+        uses: Lukasss93/telegram-action@v2
         if: always()
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
