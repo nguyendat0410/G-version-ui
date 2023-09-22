@@ -34,21 +34,23 @@ jobs:
         run: yarn install
       - name: Yarn plugin import version
         run: yarn plugin import version
-      - name: Build
-        run: yarn build
-      - name: Send notify Telegram Build
-        run: curl "https://api.telegram.org/bot${{secrets.TELEGRAM_TOKEN}}/sendMessage?chat_id=${{secrets.TELEGRAM_CHAT}}&text=GithubActionsRun:${{job.status}}"
-      - name: Publish New Version
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-        run: |
-          git config --local user.email "nguyendat0410@gmail.com"
-          git config --local user.name "nguyendat0410"
-          npm version ${{github.event.inputs.release || 'patch'}} --no-git-tag-version
-          npm publish --access public
-          PACKAGE_VERSION=$(node -p "require('./package.json').version")
-          git commit -a -m "update v${PACKAGE_VERSION}"
-          git checkout -b master
-          git push origin master
-      - name: Send notify Telegram Publish to NPM
-        run: curl "https://api.telegram.org/bot${{secrets.TELEGRAM_TOKEN}}/sendMessage?chat_id=${{secrets.TELEGRAM_CHAT}}&text=GithubActionsRun:NPM_PUBLISH--${{github.event.head_commit.message}}"
+      - name: GITHUB detail
+        run: echo "${{toJSON(github)}}"
+      # - name: Build
+      #   run: yarn build
+      # - name: Send notify Telegram Build
+      #   run: curl "https://api.telegram.org/bot${{secrets.TELEGRAM_TOKEN}}/sendMessage?chat_id=${{secrets.TELEGRAM_CHAT}}&text=GithubActionsRun:${{job.status}}"
+      # - name: Publish New Version
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      #   run: |
+      #     git config --local user.email "nguyendat0410@gmail.com"
+      #     git config --local user.name "nguyendat0410"
+      #     npm version ${{github.event.inputs.release || 'patch'}} --no-git-tag-version
+      #     npm publish --access public
+      #     PACKAGE_VERSION=$(node -p "require('./package.json').version")
+      #     git commit -a -m "update v${PACKAGE_VERSION}"
+      #     git checkout -b master
+      #     git push origin master
+      # - name: Send notify Telegram Publish to NPM
+      #   run: curl "https://api.telegram.org/bot${{secrets.TELEGRAM_TOKEN}}/sendMessage?chat_id=${{secrets.TELEGRAM_CHAT}}&text=GithubActionsRun:NPM_PUBLISH--${{github.event.head_commit.message}}"
