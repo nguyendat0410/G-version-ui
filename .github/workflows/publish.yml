@@ -51,4 +51,4 @@ jobs:
           git checkout -b master
           git push origin master
       - name: Send notify Telegram Publish to NPM
-        run: curl "https://api.telegram.org/bot${{secrets.TELEGRAM_TOKEN}}/sendMessage?chat_id=${{secrets.TELEGRAM_CHAT}}&text=GithubActionsRun:NPM_PUBLISH"
+        run: curl "https://api.telegram.org/bot${{secrets.TELEGRAM_TOKEN}}/sendMessage?chat_id=${{secrets.TELEGRAM_CHAT}}&text=GithubActionsRun:NPM_PUBLISH--${{github.event.head_commit.message}}"
