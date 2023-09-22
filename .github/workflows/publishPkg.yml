@@ -38,11 +38,13 @@ jobs:
         run: yarn build
       - name: Run Test
         run: yarn test
-      - name: Show Folder
-        run: ls -lsa
       - run: |
           echo @nguyendat0410:https://npm.pkg.github.com/ > .npmrc
           echo '//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}' >> .npmrc
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.BOT_TOKEN }}
+      - name: Show Folder
+        run: ls -lsa
       - name: Publish to Github Package
         run: npm publish
         env:
