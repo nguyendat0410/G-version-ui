@@ -41,7 +41,7 @@ jobs:
       - name: Build
         run: yarn build
       - name: Send notify Telegram Build
-        run: curl https://api.telegram.org/bot${{secrets.TELEGRAM_TOKEN}}/sendMessage?chat_id=${{secrets.TELEGRAM_CHAT}}&text=GithubActionsRun:${{job.status}}
+        run: curl "https://api.telegram.org/bot${{secrets.TELEGRAM_TOKEN}}/sendMessage?chat_id=${{secrets.TELEGRAM_CHAT}}&text=GithubActionsRun:${{job.status}}"
       - name: Publish New Version
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
@@ -54,4 +54,4 @@ jobs:
           git commit -a -m "update v${PACKAGE_VERSION}"
           git push
       - name: Send notify Telegram Publish to NPM
-        run: curl https://api.telegram.org/bot${{secrets.TELEGRAM_TOKEN}}/sendMessage?chat_id=${{secrets.TELEGRAM_CHAT}}&text=GithubActionsRun:NPM_PUBLISH
+        run: curl "https://api.telegram.org/bot${{secrets.TELEGRAM_TOKEN}}/sendMessage?chat_id=${{secrets.TELEGRAM_CHAT}}&text=GithubActionsRun:NPM_PUBLISH"
