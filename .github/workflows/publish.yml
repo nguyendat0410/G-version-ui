@@ -44,8 +44,15 @@ jobs:
         run: yarn plugin import version
       - name: Build
         run: yarn build
-      - name: Curl call URL ${{github.event.inputs.tags}}
-        run: curl https://webhook.site/b14fcbea-3051-47ea-b5d3-65c5e315d43b
+      - name: Send message to Telegram
+        uses: ./
+        if: always()
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT: ${{ secrets.TELEGRAM_CHAT }}
+        with:
+          commit_template: ./templates/release-pkg.mustache
+          status: ${{job.status}}
       # - name: Publish New Version
       #   env:
       #     NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
