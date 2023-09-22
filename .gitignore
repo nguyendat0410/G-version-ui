@@ -142,3 +142,5 @@ out
 .yarn/cache
 #.pnp.*
 !yarn.lock
+
+dist/*
