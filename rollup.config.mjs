@@ -51,7 +51,7 @@ export default [
       resolve(),
       commonjs(),
       typescript({ tsconfig: "./tsconfig.json" }),
-      postcss({ minimize: false, inject: false }),
+      postcss(),
       terser(),
     ],
     external: ["react", "react-dom"],

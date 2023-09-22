@@ -31,9 +31,6 @@ const config: StorybookConfig = {
     defaultName: 'Document-[name]',
   },
   staticDirs: ['../public'],
-  core: {
-    builder: '@storybook/builder-webpack5'
-  },
   webpackFinal: async config => {
     return {
       ...config,
