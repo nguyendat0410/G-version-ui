@@ -40,8 +40,10 @@ jobs:
         run: yarn plugin import version
       - name: Build
         run: yarn build
-      - name: Send message to Telegram
+      - name: Notify Telegram Action
         uses: Lukasss93/telegram-action@v2
+      - name: Send message to Telegram
+        uses: ./
         if: always()
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
